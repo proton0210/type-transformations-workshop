@@ -8,7 +8,23 @@ interface Example {
   groupId: string;
 }
 
-type OnlyIdKeys<T> = unknown;
+type OnlyIdKeys<T> = {
+  [K in keyof T as K extends "id" | "organisationId" | "groupId"
+    ? K
+    : never]: T[K];
+};
+
+type OnlyIdKeys2<T> = {
+  [K in keyof T as K extends `${string}${"id" | "Id"}${string}`
+    ? K
+    : never]: T[K];
+};
+
+const _example: OnlyIdKeys<Example> = {
+  id: "123",
+  organisationId: "456",
+  groupId: "789",
+};
 
 type tests = [
   Expect<
