@@ -12,7 +12,7 @@ type Route =
   | { route: "/admin" }
   | { route: "/admin/users" };
 
-type RoutesObject = unknown;
+type RoutesObject = ;
 
 type tests = [
   Expect<
@@ -28,5 +28,5 @@ type tests = [
         "/admin/users": never;
       }
     >
-  >,
+  >
 ];
